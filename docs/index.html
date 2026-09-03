@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start using and developing Milk Parlor and Milk Man.">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Milk Docs</title>
+  <link rel="stylesheet" href="/milk.css">
+</head>
+<body>
+  <main class="docs">
+    <header class="masthead">
+      <a href="/" aria-label="Milk Infrastructure home"><img class="carton" src="/milk-carton.png" width="80" height="80" alt=""></a>
+      <div>
+        <p class="domain">milkinfrastructure.com/docs</p>
+        <h1>Start with Milk.</h1>
+      </div>
+    </header>
+
+    <nav class="docs-nav" aria-label="Documentation">
+      <a href="/">home</a>
+      <a href="#use">connect an app</a>
+      <a href="#develop">develop locally</a>
+      <a href="#data">saved data</a>
+    </nav>
+
+    <p class="intro">Milk has two small programs. Parlor sends OpenAI-style requests to a model and saves selected completed requests and answers. Milk Man reads those records to describe real use, write model tests, create training data, and compare smaller models.</p>
+
+    <section class="doc-section" aria-labelledby="programs-title">
+      <h2 id="programs-title">Two programs</h2>
+      <div class="programs">
+        <article class="program">
+          <h3>Milk Parlor</h3>
+          <p>The Rust gateway. It authenticates, forwards, streams, and saves selected complete request + response pairs.</p>
+        </article>
+        <article class="program">
+          <h3>Milk Man</h3>
+          <p>The local command-line tool. It runs the summary, model-test, training, comparison, and serving jobs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="use" class="doc-section" aria-labelledby="use-title">
+      <h2 id="use-title">Connect an app</h2>
+      <p>There is no Milk SDK. Use the official OpenAI package.</p>
+      <ol class="steps">
+        <li>Install the official OpenAI package.</li>
+      </ol>
+      <pre class="command"><code>pip install openai
+# or: npm install openai</code></pre>
+      <ol class="steps" start="2">
+        <li>Point it at Milk Parlor with your operator-issued Milk key.</li>
+      </ol>
+      <pre class="command"><code>export OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1
+export OPENAI_API_KEY='your Milk key'</code></pre>
+      <ol class="steps" start="3">
+        <li>Keep the application call unchanged.</li>
+      </ol>
+      <pre class="command"><code>from openai import OpenAI
+
+client = OpenAI()
+answer = client.responses.create(model="your-model", input="Hello")
+print(answer.output_text)</code></pre>
+      <p class="fine">Milk supports <code>POST /v1/responses</code> and <code>POST /v1/chat/completions</code>, including streaming. It does not claim the rest of the OpenAI API.</p>
+    </section>
+
+    <section class="doc-section" aria-labelledby="path-title">
+      <h2 id="path-title">What happens</h2>
+      <div class="milk-path" aria-label="Milk processing path">
+        <span>your app</span>
+        <span class="active">Milk Parlor</span>
+        <span>your model</span>
+        <span class="done">object store</span>
+        <span>Milk Man</span>
+      </div>
+      <dl class="terms">
+        <dt>1. Forward</dt><dd>Parlor sends the request to the configured model and streams the answer back.</dd>
+        <dt>2. Save</dt><dd>After completion, Parlor writes both sides to local or S3-compatible storage without holding up the answer.</dd>
+        <dt>3. Process</dt><dd>Milk Man counts and summarizes new conversations before deciding whether it has enough data for another job.</dd>
+        <dt>4. Propose</dt><dd>Milk Man may prepare a traffic rule for a new model. A person must approve and sign it.</dd>
+      </dl>
+    </section>
+
+    <section id="develop" class="doc-section" aria-labelledby="develop-title">
+      <h2 id="develop-title">Develop locally</h2>
+      <p>Clone both repositories. Milk Parlor needs Rust. Milk Man needs Bash, Python 3, Git, and curl. Processing captured records also needs <code>zstd</code>.</p>
+      <pre class="command"><code>git clone https://github.com/milkinfrastructure/milk-parlor.git
+git clone https://github.com/milkinfrastructure/milk-man.git</code></pre>
+
+      <h3>Run the gateway</h3>
+      <p>Set its Milk key list, model URLs and keys, route public key, and storage values. The gateway README contains one complete local setup.</p>
+      <pre class="command"><code>cd milk-parlor
+cargo run --locked</code></pre>
+      <p><a href="https://github.com/milkinfrastructure/milk-parlor#run-locally">open the gateway setup</a></p>
+
+      <h3>Run Milk Man</h3>
+      <pre class="command"><code>cd milk-man
+bin/man dashboard
+# open http://127.0.0.1:8765</code></pre>
+      <p>The dashboard stays local. It shows the current Milk Man session, gateway health, saved-data progress, and which job settings are present. It never displays secret values.</p>
+      <p>Start one development task below before using its prompt box.</p>
+
+      <h3>Give Milk Man a development task</h3>
+      <pre class="command"><code>export OPENAI_API_KEY='your development key'
+
+bin/man develop \
+  --workspace milk-man=/absolute/path/milk-man \
+  --workspace milk-parlor=/absolute/path/milk-parlor \
+  -- "make one small reviewed change"</code></pre>
+
+      <h3>Run the data loop once</h3>
+      <pre class="command"><code>export MILK_SCOPE_ID=11111111-1111-4111-8111-111111111111
+export MILK_STORE_KIND=local
+export MILK_STORE_ROOT="$PWD/.milk-objects"
+
+bin/milk status
+bin/milk operate --once</code></pre>
+      <p><code>operate --once</code> advances ready work and exits. It does not sleep. When nothing changed, it makes no inference or GPU call.</p>
+      <p><a href="https://github.com/milkinfrastructure/milk-man#run-fixed-jobs">open the complete job setup</a></p>
+    </section>
+
+    <section id="data" class="doc-section" aria-labelledby="data-title">
+      <h2 id="data-title">Saved data</h2>
+      <p>Milk gives each customer or test run one unique ID. Folder-like object storage, such as Cloudflare R2 or Amazon S3, keeps the full history under that ID:</p>
+      <pre class="command tree"><code>milk/v2/scopes/&lt;scope-uuid&gt;/
+├── c/           completed conversations
+├── s/           summary checkpoints
+├── readiness/   the next allowed step
+├── e/           model-test cases
+├── d/           training and evaluation splits
+├── m/           model records
+├── v/           comparison results
+└── p/           unsigned route proposals</code></pre>
+      <p>Saved records are never changed. A small <code>current.json</code> points to the latest version. Model weights stay outside Git and container images.</p>
+    </section>
+
+    <section class="doc-section" aria-labelledby="next-title">
+      <h2 id="next-title">Read next</h2>
+      <nav aria-label="Project references">
+        <a href="https://github.com/milkinfrastructure/milk-parlor">gateway source + setup</a>
+        <a href="https://github.com/milkinfrastructure/milk-man">harness source + jobs</a>
+        <a href="https://github.com/milkinfrastructure/milk-parlor/blob/main/SECURITY.md">security</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
