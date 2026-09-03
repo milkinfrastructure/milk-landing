@@ -4,12 +4,14 @@ const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (!reduced) {
   text.textContent = "";
-  let index = 0;
-  const type = () => {
-    text.textContent += source[index++];
-    if (index < source.length) setTimeout(type, 25);
+  const started = performance.now();
+  const duration = 4000;
+  const type = now => {
+    const index = Math.min(source.length, Math.ceil(source.length * (now - started) / duration));
+    text.textContent = source.slice(0, index);
+    if (index < source.length) requestAnimationFrame(type);
   };
-  type();
+  requestAnimationFrame(type);
 }
 
 setInterval(() => {

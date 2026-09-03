@@ -3,9 +3,6 @@
   --white: #fff;
   --pink: #ed2d6c;
   --teal: #00a092;
-  --blue: #68cade;
-  --rose: #f06a91;
-  --milk: #e8e7e7;
 }
 
 * { box-sizing: border-box; }
@@ -36,7 +33,7 @@ main {
 }
 
 .typewriter {
-  min-height: 13.5em;
+  min-height: 23em;
   margin: 0;
   white-space: pre-wrap;
   font-size: clamp(1.05rem, 3vw, 1.45rem);
@@ -62,7 +59,7 @@ nav {
 a {
   display: inline-block;
   padding: .65rem .85rem;
-  border: 2px solid var(--white);
+  border: 2px outset var(--white);
   background: var(--black);
   color: var(--white);
   font-weight: 700;
@@ -77,10 +74,10 @@ a:focus-visible {
   outline: 0;
 }
 
-a:active { transform: translate(2px, 2px); }
+a:active { border-style: inset; }
 
 @media (max-width: 32rem) {
-  .typewriter { min-height: 19em; }
+  .typewriter { min-height: 32em; }
   nav { align-items: stretch; flex-direction: column; }
   a { text-align: center; }
 }
