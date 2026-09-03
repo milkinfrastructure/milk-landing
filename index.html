@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Milk Parlor is an OpenAI-compatible gateway. Milk Man turns saved model traffic into summaries, evals, training data, and better small models.">
+  <meta name="description" content="Point the official OpenAI SDK at Milk Parlor. Milk Man processes completed requests and responses from object storage.">
   <meta name="color-scheme" content="dark">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Milk Infrastructure</title>
@@ -12,18 +12,40 @@
 </head>
 <body>
   <main>
-    <p id="copy" class="typewriter">Welcome to Milk Infrastructure.
+    <header class="masthead">
+      <img class="carton" src="/milk-carton.png" width="80" height="80" alt="">
+      <div>
+        <p class="domain">milkinfrastructure.com</p>
+        <h1>Point OpenAI at Milk.</h1>
+      </div>
+    </header>
 
-Milk Parlor is the gateway. Keep the official OpenAI SDK and change only:
+    <p class="lede">Keep the official SDK and your existing calls. Change two values.</p>
 
-OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1
-OPENAI_API_KEY=&lt;your operator-issued Milk key&gt;
+    <section class="editor" aria-label="Milk connection settings">
+      <header class="editor-bar">
+        <span class="lamp" aria-hidden="true"></span>
+        <strong>.env</strong>
+        <button id="copy" type="button">copy</button>
+      </header>
+      <pre><code><span class="plain">  # connect the OpenAI SDK to Milk Parlor</span>
+<span class="added"><b>+</b> OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1</span>
+<span class="added"><b>+</b> OPENAI_API_KEY=&lt;your Milk key&gt;</span>
+<span class="plain">  # Responses and Chat Completions stay unchanged</span></code></pre>
+      <footer class="editor-status">
+        <span><i class="status-light" aria-hidden="true"></i> ready</span>
+        <span id="copy-state" aria-live="polite">official OpenAI SDK</span>
+      </footer>
+    </section>
 
-Existing Responses and Chat Completions calls stay the same. After each eligible completed answer, Parlor copies the request and response to your S3-compatible object storage. Milk Man watches those records, writes summary checkpoints, creates evals and training data, trains and compares a smaller model, and prepares an unsigned route for you to approve.
-
-No separate Milk SDK. No database. No standing GPU.</p>
-
-    <img class="carton" src="/milk-carton.png" width="200" height="200" alt="Milk carton">
+    <div class="routes" aria-label="Milk request and data paths">
+      <div class="route">
+        <span>your app</span><b>→</b><span class="active">Milk Parlor</span><b>→</b><span>your model</span>
+      </div>
+      <div class="branch">
+        <b>└─ completed request + response</b><b>→</b><span>object store</span><b>→</b><span>Milk Man / evals + training</span>
+      </div>
+    </div>
 
     <nav aria-label="Milk source code">
       <a href="https://github.com/milkinfrastructure/milk-parlor">milk-parlor / gateway</a>

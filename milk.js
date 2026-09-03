@@ -1,19 +1,7 @@
-const text = document.querySelector("#copy");
-const source = text.textContent;
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const copy = document.querySelector("#copy");
+const state = document.querySelector("#copy-state");
 
-if (!reduced) {
-  text.textContent = "";
-  const started = performance.now();
-  const duration = 4000;
-  const type = now => {
-    const index = Math.min(source.length, Math.ceil(source.length * (now - started) / duration));
-    text.textContent = source.slice(0, index);
-    if (index < source.length) requestAnimationFrame(type);
-  };
-  requestAnimationFrame(type);
-}
-
-setInterval(() => {
-  text.classList.toggle("cursor-hidden");
-}, 400);
+copy.addEventListener("click", async () => {
+  await navigator.clipboard.writeText("OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1\nOPENAI_API_KEY=<your Milk key>");
+  state.textContent = "copied";
+});
