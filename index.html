@@ -52,6 +52,46 @@
       <a href="https://github.com/milkinfrastructure/milk-parlor">milk-parlor / gateway</a>
       <a href="https://github.com/milkinfrastructure/milk-man">milk-man / harness</a>
     </nav>
+
+    <section class="tour" aria-labelledby="after-title">
+      <p class="domain">after the answer</p>
+      <h2 id="after-title">Milk turns completed traffic into a reviewed model change.</h2>
+      <p class="tour-intro">Parlor serves the request first. Later, Milk Man reads selected completed conversations from object storage and runs one named job at a time.</p>
+
+      <ol class="milk-loop" aria-label="The Milk data loop">
+        <li><small>01</small><strong>collect</strong><span>Save the completed request and answer.</span></li>
+        <li><small>02</small><strong>understand</strong><span>Summarize new traffic at each threshold.</span></li>
+        <li><small>03</small><strong>make tests</strong><span>Turn selected conversations into structured cases.</span></li>
+        <li><small>04</small><strong>train + compare</strong><span>Train Qwen3.5-0.8B and compare versions.</span></li>
+        <li><small>05</small><strong>review route</strong><span>Prepare a change for a person to approve.</span></li>
+      </ol>
+      <p class="loop-note"><b>Nothing ready?</b> Milk Man exits without calling a model or GPU. It never approves its own route.</p>
+    </section>
+
+    <section class="tour screens" aria-labelledby="screens-title">
+      <p class="domain">one local view</p>
+      <h2 id="screens-title">See what Milk is doing.</h2>
+      <p class="tour-intro">These screens show a mechanics run using generated traffic. They are not customer data or current provider status.</p>
+
+      <div class="shots">
+        <figure class="shot wide">
+          <a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="2223" height="2586" loading="lazy" decoding="async" alt="Milk Man dashboard showing connection setup, live status, and the next job"></a>
+          <figcaption><b>01 / connect + status</b><span>Connection setup, gateway and storage status, and the next job.</span></figcaption>
+        </figure>
+        <figure class="shot wide">
+          <a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="2164" height="1860" loading="lazy" decoding="async" alt="Milk Man dashboard showing each step from captured traffic to a route proposal"></a>
+          <figcaption><b>02 / follow the loop</b><span>Each step from captured conversations to a person-reviewed route.</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="2103" height="2346" loading="lazy" decoding="async" alt="Milk Man dashboard conversation and command output"></a>
+          <figcaption><b>03 / give one task</b><span>One supervised instruction, its answer, and exact work details.</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="2085" height="1963" loading="lazy" decoding="async" alt="Milk Man dashboard showing a saved traffic summary"></a>
+          <figcaption><b>04 / read a checkpoint</b><span>Volume, quality, topics, outcomes, and response speed.</span></figcaption>
+        </figure>
+      </div>
+    </section>
   </main>
 </body>
 </html>

@@ -50,6 +50,12 @@ h1 {
   line-height: 1;
 }
 
+h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 4vw, 1.65rem);
+  line-height: 1.25;
+}
+
 .lede {
   margin: 2rem 0 1rem;
   font-weight: 700;
@@ -154,6 +160,89 @@ nav {
   gap: .75rem;
   margin-top: 2rem;
 }
+
+.tour {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 3px double var(--white);
+}
+
+.tour-intro {
+  max-width: 42rem;
+  margin: 1rem 0 1.5rem;
+  line-height: 1.6;
+}
+
+.milk-loop {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.milk-loop li {
+  position: relative;
+  min-width: 0;
+  padding: .75rem;
+  border: 2px outset var(--white);
+}
+
+.milk-loop li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: calc(50% - .75rem);
+  right: -.95rem;
+  color: var(--teal);
+  z-index: 1;
+}
+
+.milk-loop small,
+.milk-loop strong,
+.milk-loop span { display: block; }
+.milk-loop small { color: var(--pink); }
+.milk-loop strong { margin: .3rem 0 .55rem; }
+.milk-loop span { font-size: .75rem; line-height: 1.45; }
+
+.loop-note {
+  margin: 1rem 0 0;
+  padding: .75rem;
+  border-left: .35rem solid var(--teal);
+  line-height: 1.55;
+}
+
+.screens h2 { margin-bottom: 1.25rem; }
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.shot {
+  min-width: 0;
+  margin: 0;
+  border: 2px outset var(--white);
+}
+
+.shot.wide { grid-column: 1 / -1; }
+.shot > a { display: block; padding: 0; border: 0; }
+.shot > a:hover,
+.shot > a:focus-visible { background: var(--black); outline: 2px solid var(--pink); outline-offset: 2px; }
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 2px inset var(--white);
+}
+
+.shot figcaption { padding: .65rem .75rem; line-height: 1.45; }
+.shot figcaption b,
+.shot figcaption span { display: block; }
+.shot figcaption b { margin-bottom: .2rem; color: var(--teal); }
+.shot figcaption span { font-size: .8rem; }
 
 a {
   padding: .65rem .85rem;
@@ -273,7 +362,11 @@ a:active { border-style: inset; }
   .branch { align-items: stretch; flex-direction: column; text-align: center; }
   .branch b { transform: none; }
   .programs,
-  .milk-path { grid-template-columns: 1fr; }
+  .milk-path,
+  .milk-loop,
+  .shots { grid-template-columns: 1fr; }
+  .milk-loop li:not(:last-child)::after { content: "↓"; top: auto; right: calc(50% - .3rem); bottom: -1.15rem; }
+  .shot.wide { grid-column: auto; }
   .milk-path span { border-right: 0; border-bottom: 1px solid var(--white); }
   .milk-path span:last-child { border-bottom: 0; }
   .terms { grid-template-columns: 1fr; }
