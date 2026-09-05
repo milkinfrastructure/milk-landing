@@ -173,6 +173,20 @@ nav {
   line-height: 1.6;
 }
 
+.checkpoint-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 2px inset var(--white); }
+.checkpoint-flow > div { padding: 1rem; border-right: 1px solid var(--white); }
+.checkpoint-flow > div:last-child { border: 0; }
+.checkpoint-flow small { color: var(--teal); font-size: .875rem; }
+.checkpoint-flow h3 { font-size: 1rem; margin: .65rem 0; }
+.checkpoint-flow p { margin: 0; font-size: .875rem; line-height: 1.55; }
+.milestone-example { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 1.5rem; border-top: 3px double var(--white); }
+.milestone-example span { position: relative; padding: .75rem 0; text-align: center; font-size: .875rem; }
+.milestone-example span::before { content: ""; position: absolute; width: 2px; height: .5rem; top: 0; left: 50%; background: var(--pink); }
+.config-note { font-size: .875rem; line-height: 1.55; margin: .25rem 0 2rem; }
+.config-note code { font: inherit; overflow-wrap: anywhere; }
+.loop-heading { font-size: 1rem; margin: 2rem 0 1rem; }
+.page-footer { display: flex; flex-wrap: wrap; gap: .75rem; border-top: 3px double var(--white); padding-top: 1.5rem; margin-top: 2rem; font-size: .875rem; }
+
 .milk-loop {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -232,7 +246,7 @@ summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
 .shots {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -272,10 +286,8 @@ button:focus-visible,
 a:hover,
 a:focus-visible {
   border-color: var(--pink);
-  background: var(--pink);
-  color: var(--black);
-  outline: 0;
 }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
 button:active,
 a:active { border-style: inset; }
@@ -378,10 +390,12 @@ a:active { border-style: inset; }
   .branch { align-items: stretch; flex-direction: column; text-align: center; }
   .branch b { transform: none; }
   .programs,
+  .checkpoint-flow,
   .milk-path,
   .milk-loop,
   .shots { grid-template-columns: 1fr; }
   .milk-loop li:not(:last-child)::after { content: "↓"; top: auto; right: calc(50% - .3rem); bottom: -1.15rem; }
+  .checkpoint-flow > div { border-right: 0; border-bottom: 1px solid var(--white); }
   .shot.wide { grid-column: auto; }
   .milk-path span { border-right: 0; border-bottom: 1px solid var(--white); }
   .milk-path span:last-child { border-bottom: 0; }

@@ -55,12 +55,24 @@
 
     <section class="tour" aria-labelledby="after-title">
       <p class="domain">after the answer</p>
-      <h2 id="after-title">One gateway. One agent. Saved results.</h2>
+      <h2 id="after-title">Collect traffic. Run experiments.</h2>
       <div class="programs overview">
         <article class="program"><h3>Milk Parlor / the gateway</h3><p>Sends your model calls and returns the answers. Saves eligible request–response pairs in the background.</p></article>
         <article class="program"><h3>Milk Man / the agent</h3><p>Give it a goal. It runs commands, starts cloud models, measures results, and saves what it learns.</p></article>
       </div>
-      <p class="tour-intro">Use the saved traffic to improve a model. Open a step to see what happens.</p>
+      <p class="tour-intro">Parlor handles the request. Milk Man works on what comes after.</p>
+
+      <div class="checkpoint-flow" aria-label="Automatic summary workflow">
+        <div><small>01 / count</small><h3>Let the data arrive.</h3><p>The heartbeat counts saved exchanges. No model call.</p></div>
+        <div><small>02 / summarize</small><h3>Reach a milestone.</h3><p>A job reads the new data and the previous summary.</p></div>
+        <div><small>03 / read</small><h3>Keep the result.</h3><p>The saved file fills the dashboard. Open it to see what changed.</p></div>
+      </div>
+      <div class="milestone-example" aria-label="Example summary milestones: 100, 1000, 10000 and 100000 exchanges">
+        <span>100</span><span>1,000</span><span>10,000</span><span>100,000</span>
+      </div>
+      <p class="config-note">Example milestones · set with <code>MILK_SUMMARY_THRESHOLDS</code>. One exchange is a request and its response.</p>
+
+      <h3 class="loop-heading">Then, put the data to work.</h3>
 
       <ol class="milk-loop" aria-label="The Milk data loop">
         <li><details><summary><small>01</small><strong>collect</strong></summary><p>Save each eligible request and answer under your account's unique ID. Related exchanges stay grouped as one task.</p></details></li>
@@ -69,7 +81,7 @@
         <li><details><summary><small>04</small><strong>train + compare</strong></summary><p>Train an open model, tune how it runs, and compare answers, speed, and cost on the same tasks. Qwen3.5-0.8B is the first training base.</p></details></li>
         <li><details><summary><small>05</small><strong>review route</strong></summary><p>Prepare a gateway rule for the selected model. The operator reviews and signs it before customer traffic moves.</p></details></li>
       </ol>
-      <p class="loop-note"><b>Between tasks:</b> the heartbeat waits without model calls. A new instruction or a registered change wakes Milk Man. Closing the dashboard does not stop it.</p>
+      <p class="loop-note"><b>Give Milk Man a task:</b> run a model, compare its settings, or train from saved data. It runs the jobs and keeps their results. Closing the dashboard does not stop it.</p>
       <details class="explain"><summary>Where do the models and data live?</summary><p>Environment variables select local files or S3-compatible storage, managed inference APIs, and owned Baseten or Modal GPUs. Model files are cached separately from the runtime image. Milk Man can run locally while the data and compute stay in the cloud.</p></details>
       <details class="explain"><summary>Does this guarantee a better model?</summary><p>No. Milk keeps the experiment and its result, including failures. Speed improvements and better answers are different measurements. The goal is to beat a chosen baseline on your tasks, not to claim a universal ranking.</p></details>
     </section>
@@ -77,27 +89,28 @@
     <section class="tour screens" aria-labelledby="screens-title">
       <p class="domain">one local view</p>
       <h2 id="screens-title">See what Milk is doing.</h2>
-      <p class="tour-intro">Saved screens from an earlier development run, not live status. The current dashboard separates chat, data, experiments, and tools.</p>
+      <p class="tour-intro">Actual development screens, not live status. Chat is for the task; summaries are for the data.</p>
 
       <div class="shots">
         <figure class="shot wide">
-          <details><summary>connect an app + check status</summary><a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="2223" height="2586" loading="lazy" decoding="async" alt="Milk Man dashboard showing connection setup, live status, and the next job"></a></details>
-          <figcaption><b>01 / connect + status</b><span>Connection setup, gateway and storage status, and the next job.</span></figcaption>
+          <details><summary>connect with the SDK</summary><a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="1200" height="1079" loading="lazy" decoding="async" alt="Milk dashboard with the two OpenAI SDK settings and request-to-storage diagram"></a></details>
+          <figcaption><b>Connect an app</b><span>Keep the SDK. Change the URL and key.</span></figcaption>
         </figure>
         <figure class="shot wide">
-          <details><summary>follow the data through each job</summary><a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="2164" height="1860" loading="lazy" decoding="async" alt="Milk Man dashboard showing each step from captured traffic to a route proposal"></a></details>
-          <figcaption><b>02 / follow the loop</b><span>Each step from captured conversations to a person-reviewed route.</span></figcaption>
+          <details><summary>follow the next summary milestone</summary><a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="1168" height="775" loading="lazy" decoding="async" alt="Milk Man showing 241 saved exchanges, 100 summarized, and the next summary milestone at 1000"></a></details>
+          <figcaption><b>Watch the count</b><span>Saved exchanges, completed summaries, and the next configured milestone.</span></figcaption>
         </figure>
         <figure class="shot">
-          <details><summary>read the agent's work</summary><a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="2103" height="2346" loading="lazy" decoding="async" alt="Milk Man dashboard conversation and command output"></a></details>
-          <figcaption><b>03 / give one task</b><span>The instruction, reply, and commands that ran.</span></figcaption>
+          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="1200" height="1207" loading="lazy" decoding="async" alt="Milk Man chat reporting the completed three-step training run beside its idle heartbeat"></a>
+          <figcaption><b>Follow the task</b><span>Read the reply. Expand commands when you need them. See when the agent checks again.</span></figcaption>
         </figure>
         <figure class="shot">
-          <details open><summary>read a saved traffic summary</summary><a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="2085" height="1963" loading="lazy" decoding="async" alt="Milk Man dashboard showing a saved traffic summary"></a></details>
-          <figcaption><b>04 / read a checkpoint</b><span>Volume, quality, topics, outcomes, and response speed.</span></figcaption>
+          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="1168" height="683" loading="lazy" decoding="async" alt="Milk Man summary of 100 exchanges with topics and tasks from eight labeled examples"></a>
+          <figcaption><b>Read the data</b><span>Counts, milestone progress and topics. Each chart says how much data it covers.</span></figcaption>
         </figure>
       </div>
     </section>
+    <footer class="page-footer"><a href="/docs/">setup + documentation</a><a href="https://github.com/milkinfrastructure/milk-man">Milk Man source</a><a href="https://github.com/milkinfrastructure/milk-parlor">Milk Parlor source</a></footer>
   </main>
 </body>
 </html>
