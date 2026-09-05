@@ -121,7 +121,7 @@ pre {
 code span { display: block; }
 .plain { color: var(--white); }
 .added { border-left: .35rem solid var(--teal); padding-left: .65rem; }
-.added b { color: var(--teal); }
+.added b { color: var(--teal); margin-right: .5ch; }
 
 .routes { margin: 1rem 0; }
 
@@ -295,6 +295,7 @@ a:active { border-style: inset; }
 .docs { max-width: 56rem; }
 
 .docs .masthead { margin-bottom: 1.5rem; }
+.docs .masthead > div { min-width: 0; overflow-wrap: anywhere; }
 
 .docs-nav {
   margin: 0 0 2.5rem;
@@ -443,8 +444,6 @@ a:active { border-style: inset; }
 .broadcast .screens h2 { margin-bottom: 0; }
 .broadcast .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .broadcast .shot { align-self: start; }
-.broadcast .shot img { object-fit: cover; object-position: top; max-height: 27rem; }
-.broadcast .shot:has(details[open]) img { max-height: none; }
 .broadcast .shot figcaption { padding: 1rem; border-top: 0; }
 .broadcast .shot figcaption b { font-size: .9375rem; }
 .broadcast .shot figcaption span { font-size: .875rem; }
@@ -457,6 +456,10 @@ a:active { border-style: inset; }
 @keyframes carton-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 .paused .hero-carton { animation-play-state: paused; }
 @media (max-width: 48rem) {
+  button, a, summary { min-height: 44px; touch-action: manipulation; }
+  .station-bar nav a, .lower-third button { font-size: .875rem; }
+  .station-bar nav a { display: inline-flex; align-items: center; }
+  .doc-section a { display: inline-flex; align-items: center; }
   .broadcast-label span:last-child { display: none; }
   .pitch { grid-template-columns: 1fr 1fr; }
   .pitch h1 { font-size: clamp(2.75rem, 8vw, 4rem); }
@@ -474,7 +477,7 @@ a:active { border-style: inset; }
   .station { font-size: .75rem; gap: .25rem; }
   .station-bar { gap: .5rem; }
   .station-bar nav { flex-direction: row; }
-  .station-bar nav a { font-size: .75rem; padding: .4rem; }
+  .station-bar nav a { padding: .4rem; }
   .station-bar nav a:last-child { display: none; }
   .pitch { grid-template-columns: 1fr; }
   .pitch h1 { font-size: clamp(3rem, 16vw, 5rem); }
@@ -490,10 +493,14 @@ a:active { border-style: inset; }
   .segment-title { gap: .75rem; }
   .segment-number { flex-basis: 2.5rem; height: 2.5rem; font-size: 1.125rem; }
   .broadcast .editor pre { padding: .75rem; font-size: .875rem; }
+  .editor pre { white-space: normal; }
+  .editor code span { white-space: pre-wrap; margin: .75rem 0; }
+  .added { position: relative; padding-left: 1.35rem; }
+  .added b { position: absolute; left: .4rem; }
   .broadcast .shots { grid-template-columns: 1fr; }
   .page-footer > span { margin-left: 0; }
-  pre { white-space: pre-wrap; word-break: break-all; font-size: .78rem; }
-  .added { overflow-wrap: anywhere; word-break: break-all; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; }
+  .added { overflow-wrap: anywhere; }
   .editor-status { flex-wrap: wrap; }
   .route { grid-template-columns: 1fr; }
   .route b { transform: rotate(90deg); }

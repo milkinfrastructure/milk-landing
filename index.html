@@ -7,8 +7,8 @@
   <meta name="color-scheme" content="dark">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Milk Infrastructure</title>
-  <link rel="stylesheet" href="/milk.css">
-  <script src="/milk.js" defer></script>
+  <link rel="stylesheet" href="/milk.css?v=20260905">
+  <script src="/milk.js?v=20260905" defer></script>
 </head>
 <body class="broadcast">
   <main>
@@ -48,8 +48,8 @@
         <button id="copy" type="button">copy</button>
       </header>
       <pre><code><span class="plain">  # connect the OpenAI SDK to Milk Parlor</span>
-<span class="added"><b>+</b> OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1</span>
-<span class="added"><b>+</b> OPENAI_API_KEY=&lt;your Milk key&gt;</span>
+<span class="added"><b aria-hidden="true">+</b>OPENAI_BASE_URL=https://parlor.milkinfrastructure.com/v1</span>
+<span class="added"><b aria-hidden="true">+</b>OPENAI_API_KEY=&lt;your Milk key&gt;</span>
 <span class="plain">  # Responses and Chat Completions stay unchanged</span></code></pre>
       <footer class="editor-status">
         <span><i class="status-light" aria-hidden="true"></i> connection example</span>
@@ -112,18 +112,18 @@
       <div class="shots">
         <figure class="shot">
           <figcaption><b>01 / Give Milk Man a task</b><span>Read the reply. Expand the commands. The heartbeat keeps checking after you leave.</span></figcaption>
-          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="1200" height="1207" loading="lazy" decoding="async" alt="Milk Man chat reporting the completed three-step training run beside its idle heartbeat"></a>
+          <a href="/screens/dashboard-conversation.png?v=3db10d0" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png?v=3db10d0" width="1200" height="1207" loading="lazy" decoding="async" alt="Milk Man chat reporting the completed three-step training run beside its idle heartbeat"></a>
         </figure>
         <figure class="shot">
           <figcaption><b>02 / See what the data says</b><span>Counts, milestones and topics. Each chart says how much data it covers.</span></figcaption>
-          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="1168" height="683" loading="lazy" decoding="async" alt="Milk Man summary of 100 exchanges with topics and tasks from eight labeled examples"></a>
+          <a href="/screens/dashboard-summary.png?v=3db10d0" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png?v=3db10d0" width="1168" height="683" loading="lazy" decoding="async" alt="Milk Man summary of 100 exchanges with topics and tasks from eight labeled examples"></a>
         </figure>
         <figure class="shot wide">
-          <details><summary>connect with the SDK</summary><a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="1200" height="1079" loading="lazy" decoding="async" alt="Milk dashboard with the two OpenAI SDK settings and request-to-storage diagram"></a></details>
+          <details><summary>connect with the SDK</summary><a href="/screens/dashboard-overview.png?v=3db10d0" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png?v=3db10d0" width="1200" height="1079" loading="lazy" decoding="async" alt="Milk dashboard with the two OpenAI SDK settings and request-to-storage diagram"></a></details>
           <figcaption><b>Connect an app</b><span>Keep the SDK. Change the URL and key.</span></figcaption>
         </figure>
         <figure class="shot wide">
-          <details><summary>follow the next summary milestone</summary><a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="1168" height="775" loading="lazy" decoding="async" alt="Milk Man showing 241 saved exchanges, 100 summarized, and the next summary milestone at 1000"></a></details>
+          <details><summary>follow the next summary milestone</summary><a href="/screens/dashboard-loop.png?v=3db10d0" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png?v=3db10d0" width="1168" height="775" loading="lazy" decoding="async" alt="Milk Man showing 241 saved exchanges, 100 summarized, and the next summary milestone at 1000"></a></details>
           <figcaption><b>Watch the count</b><span>Saved exchanges, completed summaries, and the next configured milestone.</span></figcaption>
         </figure>
       </div>

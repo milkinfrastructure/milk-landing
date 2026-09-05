@@ -38,3 +38,6 @@ The site is plain HTML, CSS and two small buttons: copy and pause motion. No bui
 is needed. `index.html` is the landing page; `docs/index.html` is the guide.
 Screenshots live in `screens/`. Publish only these public files and `_headers`;
 never upload local credentials or the `.wrangler` cache.
+
+When replacing a screenshot or stylesheet, update its URL version in the HTML
+so returning visitors get the matching file. Keep screenshots uncropped.
