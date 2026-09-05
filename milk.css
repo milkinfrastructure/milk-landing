@@ -325,6 +325,7 @@ a:active { border-style: inset; }
 .doc-section p,
 .doc-section li,
 .terms dd { line-height: 1.55; }
+.docs :not(pre) > code { overflow-wrap: anywhere; }
 
 .programs {
   display: grid;
@@ -387,8 +388,8 @@ a:active { border-style: inset; }
 .broadcast h2 { font-size: clamp(1.5rem, 3.5vw, 2.3rem); }
 .broadcast p { line-height: 1.55; }
 .station-bar, .station-bar nav, .station, .broadcast-label, .lower-third { display: flex; align-items: center; }
-.station-bar { justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
-.station { border: 0; padding: 0; gap: .5rem; font-size: .875rem; }
+.station-bar { justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.station { border: 0; padding: 0; gap: .5rem; font-size: .875rem; min-width: 0; overflow-wrap: anywhere; }
 .station .carton { width: 2.5rem; height: 2.5rem; }
 .station-bar nav { margin: 0; gap: .5rem; }
 .station-bar nav a { padding: .45rem .7rem; font-size: .875rem; }
@@ -498,6 +499,7 @@ a:active { border-style: inset; }
   .added { position: relative; padding-left: 1.35rem; }
   .added b { position: absolute; left: .4rem; }
   .broadcast .shots { grid-template-columns: 1fr; }
+  .broadcast .milestone-example { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .page-footer > span { margin-left: 0; }
   pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; }
   .added { overflow-wrap: anywhere; }
