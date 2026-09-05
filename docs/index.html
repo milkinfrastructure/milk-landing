@@ -26,7 +26,7 @@
       <a href="#data">saved data</a>
     </nav>
 
-    <p class="intro">Milk has two small programs. Parlor sends OpenAI-style requests to a model and saves selected completed requests and answers. Milk Man reads those records to describe real use, write model tests, create training data, and compare smaller models.</p>
+    <p class="intro">Milk Parlor is the gateway: it forwards model calls and saves eligible requests and answers. Milk Man is the agent: give it a goal, and it uses commands and cloud jobs to operate models, measure results, and improve them using your data.</p>
 
     <section class="doc-section" aria-labelledby="programs-title">
       <h2 id="programs-title">Two programs</h2>
@@ -37,7 +37,7 @@
         </article>
         <article class="program">
           <h3>Milk Man</h3>
-          <p>The local command-line tool. It runs the summary, model-test, training, comparison, and serving jobs.</p>
+          <p>The agent runs from Bash, with an optional local dashboard. Jobs select models, storage, and cloud resources through environment variables.</p>
         </article>
       </div>
     </section>
@@ -64,6 +64,7 @@ client = OpenAI()
 answer = client.responses.create(model="your-model", input="Hello")
 print(answer.output_text)</code></pre>
       <p class="fine">Milk supports <code>POST /v1/responses</code> and <code>POST /v1/chat/completions</code>, including streaming. It does not claim the rest of the OpenAI API.</p>
+      <details class="explain"><summary>Which key goes where?</summary><p>Your app uses the Milk key issued by the gateway operator. The operator configures the actual model-provider key on Parlor. When you run Milk Man yourself, its jobs use the provider and storage credentials you configure locally. Keep secret values out of chat, screenshots, and Git.</p></details>
     </section>
 
     <section class="doc-section" aria-labelledby="path-title">
@@ -78,7 +79,7 @@ print(answer.output_text)</code></pre>
       <dl class="terms">
         <dt>1. Forward</dt><dd>Parlor sends the request to the configured model and streams the answer back.</dd>
         <dt>2. Save</dt><dd>After completion, Parlor writes both sides to local or S3-compatible storage without holding up the answer.</dd>
-        <dt>3. Process</dt><dd>Milk Man counts and summarizes new conversations before deciding whether it has enough data for another job.</dd>
+        <dt>3. Process</dt><dd>Milk Man counts saved exchanges, groups related tasks, and saves summary checkpoints before making training examples.</dd>
         <dt>4. Propose</dt><dd>Milk Man may prepare a traffic rule for a new model. A person must approve and sign it.</dd>
       </dl>
     </section>
@@ -97,27 +98,33 @@ cargo run --locked</code></pre>
 
       <h3>Run Milk Man</h3>
       <pre class="command"><code>cd milk-man
+export LLM_API_URL=https://parlor.milkinfrastructure.com/v1/responses
+export LLM_API_MODE=responses
+export LLM_MODEL=gpt-6-astra
+export LLM_API_KEY='your Milk key'
+
+bin/man run --workspace milk-man="$PWD" -- \
+  "Read the goal and report the next unfinished item."</code></pre>
+      <p>This creates a saved session and keeps its heartbeat running. For a different OpenAI-compatible provider, change the URL, model, API format, and key. The URL includes the complete endpoint path.</p>
+      <p>In a second terminal, use the same environment and start the dashboard:</p>
+      <pre class="command"><code>cd milk-man
 bin/man dashboard
 # open http://127.0.0.1:8765</code></pre>
-      <p>The dashboard stays local. It shows the current Milk Man session, gateway health, saved-data progress, and which job settings are present. It never displays secret values.</p>
-      <p>Start one development task below before using its prompt box.</p>
+      <p>Chat resumes that session. Closing the page does not stop Milk Man. Idle heartbeat checks make no model calls; a new instruction or registered change can resume work.</p>
+      <div class="programs">
+        <article class="program"><h3>What is happening now?</h3><p>Chat shows replies and commands. The heartbeat shows working, waiting, or offline. A lost dashboard connection does not prove the task stopped.</p></article>
+        <article class="program"><h3>What has been saved?</h3><p>Data shows summaries. Experiments shows results. Tools shows required environment names, not secret values or proof that a provider is running.</p></article>
+      </div>
+      <p>Use <code>MILK_DASHBOARD_PORT</code> to change the local port and <code>MILK_PARLOR_BASE_URL</code> for the gateway health check. Restart after changing the environment.</p>
 
-      <h3>Give Milk Man a development task</h3>
-      <pre class="command"><code>export OPENAI_API_KEY='your development key'
-
-bin/man develop \
-  --workspace milk-man=/absolute/path/milk-man \
-  --workspace milk-parlor=/absolute/path/milk-parlor \
-  -- "make one small reviewed change"</code></pre>
-
-      <h3>Run the data loop once</h3>
+      <h3>Run a job without chat</h3>
       <pre class="command"><code>export MILK_SCOPE_ID=11111111-1111-4111-8111-111111111111
 export MILK_STORE_KIND=local
 export MILK_STORE_ROOT="$PWD/.milk-objects"
 
 bin/milk status
 bin/milk operate --once</code></pre>
-      <p><code>operate --once</code> advances ready work and exits. It does not sleep. When nothing changed, it makes no inference or GPU call.</p>
+      <p>This local example has no captured traffic yet. Point both programs at the same scope and storage to process real exchanges. <code>operate --once</code> runs ready data jobs and exits; it is separate from the agent's persistent heartbeat.</p>
       <p><a href="https://github.com/milkinfrastructure/milk-man#run-fixed-jobs">open the complete job setup</a></p>
     </section>
 
@@ -125,14 +132,15 @@ bin/milk operate --once</code></pre>
       <h2 id="data-title">Saved data</h2>
       <p>Milk gives each customer or test run one unique ID. Folder-like object storage, such as Cloudflare R2 or Amazon S3, keeps the full history under that ID:</p>
       <pre class="command tree"><code>milk/v2/scopes/&lt;scope-uuid&gt;/
-├── c/           completed conversations
+├── c/           request–response exchanges
 ├── s/           summary checkpoints
 ├── readiness/   the next allowed step
 ├── e/           model-test cases
 ├── d/           training and evaluation splits
 ├── m/           model records
 ├── v/           comparison results
-└── p/           unsigned route proposals</code></pre>
+├── p/           unsigned route proposals
+└── research/    objective and experiment history</code></pre>
       <p>Saved records are never changed. A small <code>current.json</code> points to the latest version. Model weights stay outside Git and container images.</p>
     </section>
 

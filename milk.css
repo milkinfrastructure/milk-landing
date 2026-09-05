@@ -204,6 +204,22 @@ nav {
 .milk-loop small { color: var(--pink); }
 .milk-loop strong { margin: .3rem 0 .55rem; }
 .milk-loop span { font-size: .75rem; line-height: 1.45; }
+.overview { margin-top: 1.5rem; }
+summary { cursor: pointer; line-height: 1.5; }
+summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.milk-loop summary { list-style: none; }
+.milk-loop summary::-webkit-details-marker { display: none; }
+.milk-loop summary::after { content: "+ details"; font-size: 14px; color: var(--teal); }
+.milk-loop details[open] summary::after { content: "− close"; }
+.milk-loop:has(details[open]) { grid-template-columns: 1fr; }
+.milk-loop:has(details[open]) li:not(:last-child)::after { content: "↓"; top: auto; right: calc(50% - .3rem); bottom: -1.15rem; }
+.milk-loop details p { font-size: 14px; line-height: 1.5; }
+.explain { margin-top: .75rem; border: 2px outset var(--white); }
+.explain summary, .shot summary { padding: .7rem; }
+.explain p { padding: 0 .7rem .7rem; margin: 0; line-height: 1.55; }
+.shot details > a { display: block; padding: 0; border: 0; }
+.shot:has(details[open]) { grid-column: 1 / -1; }
+.shot figcaption { border-top: 1px solid var(--white); }
 
 .loop-note {
   margin: 1rem 0 0;

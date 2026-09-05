@@ -33,7 +33,7 @@
 <span class="added"><b>+</b> OPENAI_API_KEY=&lt;your Milk key&gt;</span>
 <span class="plain">  # Responses and Chat Completions stay unchanged</span></code></pre>
       <footer class="editor-status">
-        <span><i class="status-light" aria-hidden="true"></i> ready</span>
+        <span><i class="status-light" aria-hidden="true"></i> connection example</span>
         <span id="copy-state" aria-live="polite">official OpenAI SDK</span>
       </footer>
     </section>
@@ -50,44 +50,50 @@
     <nav aria-label="Milk source code">
       <a class="primary" href="/docs/">docs / start here</a>
       <a href="https://github.com/milkinfrastructure/milk-parlor">milk-parlor / gateway</a>
-      <a href="https://github.com/milkinfrastructure/milk-man">milk-man / harness</a>
+      <a href="https://github.com/milkinfrastructure/milk-man">milk-man / agent</a>
     </nav>
 
     <section class="tour" aria-labelledby="after-title">
       <p class="domain">after the answer</p>
-      <h2 id="after-title">Milk turns completed traffic into a reviewed model change.</h2>
-      <p class="tour-intro">Parlor serves the request first. Later, Milk Man reads selected completed conversations from object storage and runs one named job at a time.</p>
+      <h2 id="after-title">One gateway. One agent. Saved results.</h2>
+      <div class="programs overview">
+        <article class="program"><h3>Milk Parlor / the gateway</h3><p>Sends your model calls and returns the answers. Saves eligible request–response pairs in the background.</p></article>
+        <article class="program"><h3>Milk Man / the agent</h3><p>Give it a goal. It runs commands, starts cloud models, measures results, and saves what it learns.</p></article>
+      </div>
+      <p class="tour-intro">Use the saved traffic to improve a model. Open a step to see what happens.</p>
 
       <ol class="milk-loop" aria-label="The Milk data loop">
-        <li><small>01</small><strong>collect</strong><span>Save the completed request and answer.</span></li>
-        <li><small>02</small><strong>understand</strong><span>Summarize new traffic at each threshold.</span></li>
-        <li><small>03</small><strong>make tests</strong><span>Turn selected conversations into structured cases.</span></li>
-        <li><small>04</small><strong>train + compare</strong><span>Train Qwen3.5-0.8B and compare versions.</span></li>
-        <li><small>05</small><strong>review route</strong><span>Prepare a change for a person to approve.</span></li>
+        <li><details><summary><small>01</small><strong>collect</strong></summary><p>Save each eligible request and answer under your account's unique ID. Related exchanges stay grouped as one task.</p></details></li>
+        <li><details><summary><small>02</small><strong>understand</strong></summary><p>Count new exchanges. At configured milestones, save a summary of topics, tasks, and response times.</p></details></li>
+        <li><details><summary><small>03</small><strong>make examples</strong></summary><p>A teacher model writes new tasks inspired by the traffic. Keep training tasks separate from the tasks used to judge improvement.</p></details></li>
+        <li><details><summary><small>04</small><strong>train + compare</strong></summary><p>Train an open model, tune how it runs, and compare answers, speed, and cost on the same tasks. Qwen3.5-0.8B is the first training base.</p></details></li>
+        <li><details><summary><small>05</small><strong>review route</strong></summary><p>Prepare a gateway rule for the selected model. The operator reviews and signs it before customer traffic moves.</p></details></li>
       </ol>
-      <p class="loop-note"><b>Nothing ready?</b> Milk Man exits without calling a model or GPU. It never approves its own route.</p>
+      <p class="loop-note"><b>Between tasks:</b> the heartbeat waits without model calls. A new instruction or a registered change wakes Milk Man. Closing the dashboard does not stop it.</p>
+      <details class="explain"><summary>Where do the models and data live?</summary><p>Environment variables select local files or S3-compatible storage, managed inference APIs, and owned Baseten or Modal GPUs. Model files are cached separately from the runtime image. Milk Man can run locally while the data and compute stay in the cloud.</p></details>
+      <details class="explain"><summary>Does this guarantee a better model?</summary><p>No. Milk keeps the experiment and its result, including failures. Speed improvements and better answers are different measurements. The goal is to beat a chosen baseline on your tasks, not to claim a universal ranking.</p></details>
     </section>
 
     <section class="tour screens" aria-labelledby="screens-title">
       <p class="domain">one local view</p>
       <h2 id="screens-title">See what Milk is doing.</h2>
-      <p class="tour-intro">These screens show a mechanics run using generated traffic. They are not customer data or current provider status.</p>
+      <p class="tour-intro">Saved screens from an earlier development run, not live status. The current dashboard separates chat, data, experiments, and tools.</p>
 
       <div class="shots">
         <figure class="shot wide">
-          <a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="2223" height="2586" loading="lazy" decoding="async" alt="Milk Man dashboard showing connection setup, live status, and the next job"></a>
+          <details><summary>connect an app + check status</summary><a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="2223" height="2586" loading="lazy" decoding="async" alt="Milk Man dashboard showing connection setup, live status, and the next job"></a></details>
           <figcaption><b>01 / connect + status</b><span>Connection setup, gateway and storage status, and the next job.</span></figcaption>
         </figure>
         <figure class="shot wide">
-          <a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="2164" height="1860" loading="lazy" decoding="async" alt="Milk Man dashboard showing each step from captured traffic to a route proposal"></a>
+          <details><summary>follow the data through each job</summary><a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="2164" height="1860" loading="lazy" decoding="async" alt="Milk Man dashboard showing each step from captured traffic to a route proposal"></a></details>
           <figcaption><b>02 / follow the loop</b><span>Each step from captured conversations to a person-reviewed route.</span></figcaption>
         </figure>
         <figure class="shot">
-          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="2103" height="2346" loading="lazy" decoding="async" alt="Milk Man dashboard conversation and command output"></a>
-          <figcaption><b>03 / give one task</b><span>One supervised instruction, its answer, and exact work details.</span></figcaption>
+          <details><summary>read the agent's work</summary><a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="2103" height="2346" loading="lazy" decoding="async" alt="Milk Man dashboard conversation and command output"></a></details>
+          <figcaption><b>03 / give one task</b><span>The instruction, reply, and commands that ran.</span></figcaption>
         </figure>
         <figure class="shot">
-          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="2085" height="1963" loading="lazy" decoding="async" alt="Milk Man dashboard showing a saved traffic summary"></a>
+          <details open><summary>read a saved traffic summary</summary><a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="2085" height="1963" loading="lazy" decoding="async" alt="Milk Man dashboard showing a saved traffic summary"></a></details>
           <figcaption><b>04 / read a checkpoint</b><span>Volume, quality, topics, outcomes, and response speed.</span></figcaption>
         </figure>
       </div>
