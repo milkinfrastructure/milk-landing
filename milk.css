@@ -381,7 +381,117 @@ a:active { border-style: inset; }
 .tree { color: var(--teal); }
 .fine { font-size: .85rem; }
 
+/* The public broadcast uses the same four inks and hard edges as the console. */
+.broadcast main { max-width: 70rem; padding-top: 1.25rem; }
+.broadcast h2 { font-size: clamp(1.5rem, 3.5vw, 2.3rem); }
+.broadcast p { line-height: 1.55; }
+.station-bar, .station-bar nav, .station, .broadcast-label, .lower-third { display: flex; align-items: center; }
+.station-bar { justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.station { border: 0; padding: 0; gap: .5rem; font-size: .875rem; }
+.station .carton { width: 2.5rem; height: 2.5rem; }
+.station-bar nav { margin: 0; gap: .5rem; }
+.station-bar nav a { padding: .45rem .7rem; font-size: .875rem; }
+.transmission { border: 4px outset var(--white); }
+.broadcast-label { justify-content: space-between; gap: 1rem; padding: .65rem 1rem; border-bottom: 3px double var(--white); font-size: .75rem; font-weight: 700; letter-spacing: .08em; }
+.broadcast-label span:first-child { color: var(--pink); }
+.pitch { display: grid; grid-template-columns: 1.1fr 1fr; }
+.pitch-copy { padding: clamp(1.5rem, 4vw, 3rem); }
+.pitch h1 { font-size: clamp(3.5rem, 7.8vw, 6.25rem); line-height: .95; letter-spacing: -.07em; text-transform: uppercase; }
+.pitch h1 span { color: var(--pink); }
+.pitch-copy > p { margin: 1.75rem 0; font-size: 1rem; }
+.order-button { display: inline-flex; gap: 1.5rem; align-items: center; justify-content: space-between; background: var(--pink); border: 3px outset var(--white); padding: .85rem 1rem; font-size: 1rem; color: var(--black); }
+.order-button:hover { background: var(--white); border-color: var(--white); }
+.order-button span { font-size: 1.4rem; }
+.pitch-copy .offer-note { margin: .75rem 0 0; font-size: .875rem; }
+.product-stage { display: grid; grid-template-rows: auto 1fr auto; position: relative; min-width: 0; margin: 1.5rem 1.5rem 1.5rem 0; border: 3px double var(--teal); }
+.product-label { padding: .65rem 1rem; border-bottom: 1px solid var(--teal); color: var(--teal); font-size: .875rem; font-weight: 700; text-align: center; letter-spacing: .05em; }
+.hero-carton { align-self: center; justify-self: center; display: block; width: 100%; height: auto; max-width: 27rem; margin: .65rem 0; image-rendering: pixelated; }
+.motion-ready .hero-carton { animation: carton-bob 3s steps(3, end) infinite; }
+.product-stamp { display: flex; align-items: center; gap: .5rem; position: absolute; right: -.7rem; top: 20%; padding: .75rem; background: var(--pink); color: var(--black); border: 3px outset var(--white); transform: rotate(6deg); }
+.product-stamp strong { font-size: 2rem; letter-spacing: -.06em; }
+.product-stamp span { font-size: .75rem; line-height: 1.2; font-weight: 700; }
+.product-caption { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .85rem; border-top: 1px solid var(--teal); font-size: .75rem; font-weight: 700; line-height: 1.5; }
+.product-caption b { color: var(--pink); font-size: 1.5rem; }
+.lower-third { flex-wrap: wrap; gap: .5rem 1rem; padding: .85rem 1rem; background: var(--teal); color: var(--black); border-top: 3px double var(--black); }
+.lower-third strong, .lower-third > span { font-size: .875rem; }
+.lower-third button { background: var(--black); color: var(--white); font-size: .75rem; padding: .3rem .5rem; }
+.program-guide { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 1rem; gap: .75rem; }
+.program-guide a { display: flex; gap: 1rem; align-items: center; font-size: .875rem; }
+.program-guide small { color: var(--teal); font-size: 1rem; }
+.connection { margin-top: 4rem; scroll-margin-top: 1rem; }
+.segment-title { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.segment-number { display: grid; place-items: center; flex: 0 0 3.5rem; height: 3.5rem; border: 3px outset var(--white); color: var(--pink); font-size: 1.5rem; font-weight: 700; }
+.segment-title .domain { font-size: .75rem; letter-spacing: .06em; }
+.segment-title h2 { scroll-margin-top: 2rem; }
+.broadcast .lede { margin: 0 0 1rem; font-weight: 400; }
+.broadcast .editor pre { padding: 1rem 1.5rem; font-size: .875rem; }
+.broadcast .source-links { margin-top: 1.25rem; font-size: .875rem; }
+.broadcast .branch { flex-wrap: wrap; justify-content: center; }
+.broadcast .tour { margin-top: 3.5rem; border-top: 4px double var(--white); }
+.broadcast .overview { gap: 0; }
+.broadcast .program { padding: 1.25rem; }
+.broadcast .program h3 { color: var(--teal); font-size: 1rem; }
+.broadcast .program p { font-size: .9375rem; }
+.broadcast .checkpoint-flow h3 { font-size: 1.15rem; }
+.broadcast .checkpoint-flow p { font-size: .9375rem; }
+.broadcast .milestone-example { margin-top: 1rem; border: 0; gap: .5rem; }
+.broadcast .milestone-example span { border: 3px inset var(--white); font-size: clamp(.875rem, 2.5vw, 1.5rem); font-weight: 700; padding: 1rem .25rem; }
+.broadcast .milestone-example span::before { display: none; }
+.broadcast .config-note { margin-top: .75rem; }
+.broadcast .milk-loop { gap: .9rem; }
+.broadcast .milk-loop strong { font-size: .875rem; }
+.broadcast .screens h2 { margin-bottom: 0; }
+.broadcast .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.broadcast .shot { align-self: start; }
+.broadcast .shot img { object-fit: cover; object-position: top; max-height: 27rem; }
+.broadcast .shot:has(details[open]) img { max-height: none; }
+.broadcast .shot figcaption { padding: 1rem; border-top: 0; }
+.broadcast .shot figcaption b { font-size: .9375rem; }
+.broadcast .shot figcaption span { font-size: .875rem; }
+.broadcast .shot.wide { grid-column: auto; }
+.broadcast .shot.wide:has(details[open]) { grid-column: 1 / -1; }
+.end-card { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.25rem; border: 4px outset var(--white); padding: 2rem 1rem; margin-top: 3rem; }
+.end-card h2 { text-transform: uppercase; }
+.broadcast .page-footer { align-items: center; font-size: .75rem; border: 0; }
+.page-footer > span { margin-left: auto; }
+@keyframes carton-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+.paused .hero-carton { animation-play-state: paused; }
+@media (max-width: 48rem) {
+  .broadcast-label span:last-child { display: none; }
+  .pitch { grid-template-columns: 1fr 1fr; }
+  .pitch h1 { font-size: clamp(2.75rem, 8vw, 4rem); }
+  .pitch-copy { padding: 1.25rem; }
+  .product-stage { margin: 1.25rem 1.25rem 1.25rem 0; }
+  .product-caption { flex-direction: column; text-align: center; }
+  .product-caption > b { display: none; }
+  .product-stamp { top: 25%; padding: .5rem; }
+  .product-stamp strong { font-size: 1.5rem; }
+  .program-guide a { gap: .5rem; padding: .6rem; }
+  .broadcast .milk-loop { grid-template-columns: 1fr; }
+  .broadcast .milk-loop li:not(:last-child)::after { content: "↓"; top: auto; right: calc(50% - .3rem); bottom: -1.15rem; }
+}
 @media (max-width: 34rem) {
+  .station { font-size: .75rem; gap: .25rem; }
+  .station-bar { gap: .5rem; }
+  .station-bar nav { flex-direction: row; }
+  .station-bar nav a { font-size: .75rem; padding: .4rem; }
+  .station-bar nav a:last-child { display: none; }
+  .pitch { grid-template-columns: 1fr; }
+  .pitch h1 { font-size: clamp(3rem, 16vw, 5rem); }
+  .pitch-copy > p { margin: 1.25rem 0; }
+  .product-stage { margin: 0 1.25rem 1.25rem; }
+  .hero-carton { max-width: 17rem; }
+  .product-caption { flex-direction: row; }
+  .product-stamp { top: 20%; }
+  .lower-third button { margin-left: 0; }
+  .broadcast .program-guide { display: flex; flex-direction: column; gap: .5rem; }
+  .program-guide a { text-align: left; }
+  .connection { margin-top: 2.5rem; }
+  .segment-title { gap: .75rem; }
+  .segment-number { flex-basis: 2.5rem; height: 2.5rem; font-size: 1.125rem; }
+  .broadcast .editor pre { padding: .75rem; font-size: .875rem; }
+  .broadcast .shots { grid-template-columns: 1fr; }
+  .page-footer > span { margin-left: 0; }
   pre { white-space: pre-wrap; word-break: break-all; font-size: .78rem; }
   .added { overflow-wrap: anywhere; word-break: break-all; }
   .editor-status { flex-wrap: wrap; }

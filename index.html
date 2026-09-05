@@ -10,19 +10,38 @@
   <link rel="stylesheet" href="/milk.css">
   <script src="/milk.js" defer></script>
 </head>
-<body>
+<body class="broadcast">
   <main>
-    <header class="masthead">
-      <img class="carton" src="/milk-carton.png" width="80" height="80" alt="">
-      <div>
-        <p class="domain">milkinfrastructure.com</p>
-        <h1>Point OpenAI at Milk.</h1>
-      </div>
+    <header class="station-bar">
+      <a class="station" href="/" aria-label="Milk Infrastructure home"><img class="carton" src="/milk-carton.png" width="80" height="80" alt="">MILK INFRASTRUCTURE</a>
+      <nav aria-label="Quick links"><a href="/docs/">the docs</a><a href="https://github.com/milkinfrastructure/milk-man">the code</a></nav>
     </header>
 
-    <p class="lede">Keep the official SDK and your existing calls. Change two values.</p>
+    <section class="transmission" aria-labelledby="milk-title">
+      <div class="broadcast-label"><span>THE MILK PROGRAM</span><span>MODEL CALLS HAVE A SECOND ACT.</span></div>
+      <div class="pitch">
+        <div class="pitch-copy">
+          <h1 id="milk-title">Point<br>OpenAI<br>at <span>Milk.</span></h1>
+          <p>Your app gets its answer.<br>Milk puts the saved traffic to work.</p>
+          <a class="order-button" href="#connect">CHANGE TWO VALUES <span aria-hidden="true">↘</span></a>
+          <p class="offer-note">Same SDK. Same calls. Your models.</p>
+        </div>
+        <div class="product-stage">
+          <div class="product-label">REQUEST + RESPONSE</div>
+          <img class="hero-carton" src="/milk-carton.png" width="4167" height="4167" alt="The original pink and teal pixel Milk carton">
+          <div class="product-stamp"><strong>OPEN</strong><span>SOURCE<br>CODE</span></div>
+          <div class="product-caption"><span>MEET YOUR<br>SECOND ACT.</span><b aria-hidden="true">+</b><span>SUMMARIES<br>MODEL EXPERIMENTS</span></div>
+        </div>
+      </div>
+      <div class="lower-third"><strong>DON’T JUST CALL A MODEL.</strong><span>Learn from what goes through it.</span><button id="motion" type="button" aria-pressed="false" hidden>pause motion</button></div>
+    </section>
 
-    <section class="editor" aria-label="Milk connection settings">
+    <nav class="program-guide" aria-label="On this page"><a href="#connect"><small>01</small> connect your app</a><a href="#after-title"><small>02</small> follow the data</a><a href="#screens-title"><small>03</small> see it working</a></nav>
+
+    <section class="connection" id="connect" aria-labelledby="connect-title">
+    <header class="segment-title"><span class="segment-number">01</span><div><p class="domain">THE TWO-LINE SETUP</p><h2 id="connect-title">Keep the SDK. Add Milk.</h2></div></header>
+    <p class="lede">Keep the official OpenAI SDK and your existing calls. Change the URL and key.</p>
+    <div class="editor" aria-label="Milk connection settings">
       <header class="editor-bar">
         <span class="lamp" aria-hidden="true"></span>
         <strong>.env</strong>
@@ -36,7 +55,7 @@
         <span><i class="status-light" aria-hidden="true"></i> connection example</span>
         <span id="copy-state" aria-live="polite">official OpenAI SDK</span>
       </footer>
-    </section>
+    </div>
 
     <div class="routes" aria-label="Milk request and data paths">
       <div class="route">
@@ -47,15 +66,15 @@
       </div>
     </div>
 
-    <nav aria-label="Milk source code">
+    <nav class="source-links" aria-label="Milk source code">
       <a class="primary" href="/docs/">docs / start here</a>
       <a href="https://github.com/milkinfrastructure/milk-parlor">milk-parlor / gateway</a>
       <a href="https://github.com/milkinfrastructure/milk-man">milk-man / agent</a>
     </nav>
+    </section>
 
     <section class="tour" aria-labelledby="after-title">
-      <p class="domain">after the answer</p>
-      <h2 id="after-title">Collect traffic. Run experiments.</h2>
+      <header class="segment-title"><span class="segment-number">02</span><div><p class="domain">AFTER THE ANSWER</p><h2 id="after-title">But wait. There’s data.</h2></div></header>
       <div class="programs overview">
         <article class="program"><h3>Milk Parlor / the gateway</h3><p>Sends your model calls and returns the answers. Saves eligible request–response pairs in the background.</p></article>
         <article class="program"><h3>Milk Man / the agent</h3><p>Give it a goal. It runs commands, starts cloud models, measures results, and saves what it learns.</p></article>
@@ -87,11 +106,18 @@
     </section>
 
     <section class="tour screens" aria-labelledby="screens-title">
-      <p class="domain">one local view</p>
-      <h2 id="screens-title">See what Milk is doing.</h2>
-      <p class="tour-intro">Actual development screens, not live status. Chat is for the task; summaries are for the data.</p>
+      <header class="segment-title"><span class="segment-number">03</span><div><p class="domain">THE DEMONSTRATION</p><h2 id="screens-title">Actual screens. Actual work.</h2></div></header>
+      <p class="tour-intro">Recorded development runs, not live status. Click a screen to see it full size.</p>
 
       <div class="shots">
+        <figure class="shot">
+          <figcaption><b>01 / Give Milk Man a task</b><span>Read the reply. Expand the commands. The heartbeat keeps checking after you leave.</span></figcaption>
+          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="1200" height="1207" loading="lazy" decoding="async" alt="Milk Man chat reporting the completed three-step training run beside its idle heartbeat"></a>
+        </figure>
+        <figure class="shot">
+          <figcaption><b>02 / See what the data says</b><span>Counts, milestones and topics. Each chart says how much data it covers.</span></figcaption>
+          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="1168" height="683" loading="lazy" decoding="async" alt="Milk Man summary of 100 exchanges with topics and tasks from eight labeled examples"></a>
+        </figure>
         <figure class="shot wide">
           <details><summary>connect with the SDK</summary><a href="/screens/dashboard-overview.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-overview.png" width="1200" height="1079" loading="lazy" decoding="async" alt="Milk dashboard with the two OpenAI SDK settings and request-to-storage diagram"></a></details>
           <figcaption><b>Connect an app</b><span>Keep the SDK. Change the URL and key.</span></figcaption>
@@ -100,17 +126,10 @@
           <details><summary>follow the next summary milestone</summary><a href="/screens/dashboard-loop.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-loop.png" width="1168" height="775" loading="lazy" decoding="async" alt="Milk Man showing 241 saved exchanges, 100 summarized, and the next summary milestone at 1000"></a></details>
           <figcaption><b>Watch the count</b><span>Saved exchanges, completed summaries, and the next configured milestone.</span></figcaption>
         </figure>
-        <figure class="shot">
-          <a href="/screens/dashboard-conversation.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-conversation.png" width="1200" height="1207" loading="lazy" decoding="async" alt="Milk Man chat reporting the completed three-step training run beside its idle heartbeat"></a>
-          <figcaption><b>Follow the task</b><span>Read the reply. Expand commands when you need them. See when the agent checks again.</span></figcaption>
-        </figure>
-        <figure class="shot">
-          <a href="/screens/dashboard-summary.png" target="_blank" rel="noreferrer"><img src="/screens/dashboard-summary.png" width="1168" height="683" loading="lazy" decoding="async" alt="Milk Man summary of 100 exchanges with topics and tasks from eight labeled examples"></a>
-          <figcaption><b>Read the data</b><span>Counts, milestone progress and topics. Each chart says how much data it covers.</span></figcaption>
-        </figure>
       </div>
     </section>
-    <footer class="page-footer"><a href="/docs/">setup + documentation</a><a href="https://github.com/milkinfrastructure/milk-man">Milk Man source</a><a href="https://github.com/milkinfrastructure/milk-parlor">Milk Parlor source</a></footer>
+    <section class="end-card" aria-labelledby="end-title"><img class="carton" src="/milk-carton.png" width="80" height="80" alt=""><h2 id="end-title">That’s Milk.</h2><a class="order-button" href="/docs/">START WITH THE DOCS <span aria-hidden="true">→</span></a></section>
+    <footer class="page-footer"><a href="/docs/">setup + documentation</a><a href="https://github.com/milkinfrastructure/milk-man">Milk Man source</a><a href="https://github.com/milkinfrastructure/milk-parlor">Milk Parlor source</a><span>milkinfrastructure.com</span></footer>
   </main>
 </body>
 </html>

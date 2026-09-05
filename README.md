@@ -11,6 +11,13 @@ the request; Milk Man uses the saved request and response for summaries and
 model experiments. The heartbeat counts exchanges without a model call;
 configured milestones start summary jobs.
 
+![The Milk landing page](screens/landing.png)
+
+The landing page uses the original pixel carton, pink and teal, and hard-edged
+TV title cards. The setup, data loop and recorded dashboard screens stay in
+separate sections. Motion can be paused and follows the device's reduced-motion
+setting.
+
 ![Milk Man task and heartbeat](screens/dashboard-conversation.png)
 
 ![Saved traffic summary](screens/dashboard-summary.png)
@@ -27,7 +34,7 @@ python3 -m http.server 8000
 
 Open <http://127.0.0.1:8000>.
 
-The site is plain HTML, CSS and a copy button. No build or dependency install
+The site is plain HTML, CSS and two small buttons: copy and pause motion. No build or dependency install
 is needed. `index.html` is the landing page; `docs/index.html` is the guide.
 Screenshots live in `screens/`. Publish only these public files and `_headers`;
 never upload local credentials or the `.wrangler` cache.

@@ -9,3 +9,16 @@ copy.addEventListener("click", async () => {
     state.textContent = "Select the two lines to copy them.";
   }
 });
+
+const motion = document.querySelector("#motion");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+function setPaused(paused) {
+  document.body.classList.toggle("paused", paused);
+  motion.textContent = paused ? "play motion" : "pause motion";
+  motion.setAttribute("aria-pressed", String(paused));
+}
+motion.hidden = false;
+setPaused(reduced.matches);
+document.body.classList.add("motion-ready");
+motion.addEventListener("click", () => setPaused(!document.body.classList.contains("paused")));
+reduced.addEventListener("change", event => setPaused(event.matches));
