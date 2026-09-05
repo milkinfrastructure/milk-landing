@@ -456,11 +456,13 @@ a:active { border-style: inset; }
 .page-footer > span { margin-left: auto; }
 @keyframes carton-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 .paused .hero-carton { animation-play-state: paused; }
-@media (max-width: 48rem) {
-  button, a, summary { min-height: 44px; touch-action: manipulation; }
+@media (max-width: 48rem), (any-pointer: coarse) {
+  button, a, summary { min-width: 44px; min-height: 44px; touch-action: manipulation; }
   .station-bar nav a, .lower-third button { font-size: .875rem; }
   .station-bar nav a { display: inline-flex; align-items: center; }
   .doc-section a { display: inline-flex; align-items: center; }
+}
+@media (max-width: 48rem) {
   .broadcast-label span:last-child { display: none; }
   .pitch { grid-template-columns: 1fr 1fr; }
   .pitch h1 { font-size: clamp(2.75rem, 8vw, 4rem); }
