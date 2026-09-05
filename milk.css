@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Berkeley Mono";
+  src: url("/BerkeleyMonoTrial-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --black: #000;
   --white: #fff;
@@ -14,8 +22,10 @@ body {
   margin: 0;
   background: var(--black);
   color: var(--white);
-  font-family: ui-monospace, Menlo, Monaco, "Courier New", monospace;
+  font-family: "Berkeley Mono", monospace;
 }
+
+code { font: inherit; }
 
 main {
   width: calc(100% - 2rem);

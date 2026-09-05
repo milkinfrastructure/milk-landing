@@ -39,5 +39,8 @@ is needed. `index.html` is the landing page; `docs/index.html` is the guide.
 Screenshots live in `screens/`. Publish only these public files and `_headers`;
 never upload local credentials or the `.wrangler` cache.
 
+The Berkeley Mono font is separately licensed; the repository's MIT license
+does not apply to the font file.
+
 When replacing a screenshot or stylesheet, update its URL version in the HTML
 so returning visitors get the matching file. Keep screenshots uncropped.
