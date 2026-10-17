@@ -15,7 +15,7 @@ Use this when Shantanu asks to send a book, paper, or PDF to his Kindle, to load
 
 1. Draft the email and wait for approval unless he explicitly said to send it.
 2. Scribe: `shantanusscribe@kindle.com`. Oasis: `shantanusoasis@kindle.com`. Leave the subject blank.
-3. Send from his personal email address. It must be a full address already on his Kindle approved personal-document list. The send history records recipients, not the From address.
+3. Send from `theshantanujoshi@gmail.com`. That personal Gmail is for personal reading only. Business mail never goes from it.
 4. Attach EPUB, PDF, or DOCX. Do not send MOBI. Keep each attachment under 50 MB, and the whole email within Kindle's 50 MB email limit.
 5. Recent titles are in his local Kindle send history (date, recipient, filename). Use that history. Do not paste it into this skill, a chat, or a shared bucket.
 
