@@ -9,7 +9,7 @@ Use this when Shantanu asks to send a book, paper, or PDF to his Kindle, to load
 3. Milk Infrastructure work belongs in the bucket `milk`.
 4. If `shantanu` is missing or the key cannot write there, stop. Do not fall back to `milk`.
 5. Never copy personal objects into `milk`, and never copy `milk` objects into `shantanu`.
-6. A reading copy of Milk work docs may sit on the X4 card under `Milk/`. That folder is not a bucket sync.
+6. A reading copy of Milk work docs may sit on the X4 card under `milk-work/`. That folder is not a bucket sync.
 
 ## Kindle
 
@@ -25,9 +25,9 @@ Firmware is CrossPoint Reader 1.6.5 (October 2026). It reads EPUB, TXT, BMP, and
 
 Card folders:
 
-- `Books/<Author>/<Title>.epub`
-- `Papers/<topic>/`
-- `Milk/` for Milk Infrastructure work docs, kept separate from books and papers
+- `books/<Author>/<Title>.epub`
+- `papers/<topic>/`
+- `milk-work/` for Milk Infrastructure work docs, kept separate from books and papers
 
 The card is FAT32, not exFAT. A 128 GB card works once it is FAT32. Use FAT-safe ASCII names. Do not add a second folder that differs only by case.
 
