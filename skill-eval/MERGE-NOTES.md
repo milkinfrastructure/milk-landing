@@ -1,6 +1,6 @@
 # Merge notes
 
-Sources read: Agent Store `inputs/agent-instructions-v2-proposal.md`, Standing prompt only, and `inputs/ponytail.tgz` at `ponytail/5.3.2/skills/ponytail/SKILL.md`. Nothing active was changed.
+Sources read: Agent Store `inputs/agent-instructions-v2-proposal.md`, Standing prompt only, and `inputs/ponytail.tgz` at `ponytail/5.3.2/skills/ponytail/SKILL.md`. The initial merge changed no active instructions. The reviewed revision is approved for installation as the global AGENTS.md.
 
 ## Dropped or changed
 
@@ -19,14 +19,18 @@ Sources read: Agent Store `inputs/agent-instructions-v2-proposal.md`, Standing p
 - "Deletion beats addition." Removed from the abstraction bullet. Less precise than "When replacing a design, remove what the replacement makes obsolete; add compatibility only for a real requirement."
 - "The shortest working diff wins, once you know everything it must touch." Dropped. Conflicts with keeping complexity for a named invariant. "Smallest sufficient correction" is the rule that stays. Kept "A one-liner that needs decoding is not short."
 - "Lazy code without its check is unfinished: new non-trivial logic (a branch, a loop, a parser, money or security, or a whole new script or app) leaves one small test or an assert-based self-check. Trivial changes need none." Dropped. A required test conflicts with "Match verification to the consequence and the requested result," including a waived check.
-- Levels heading marked "(optional)" and moved to the end. Table cells are unchanged. Lite's "let the user pick" and ultra's "push back" do not override "ask only when a missing decision or authority materially changes what you can do" or "Do not silently reduce the outcome."
+- Removed the optional levels from the standing prompt. A mode must not reopen approved scope or introduce unnecessary approval questions.
+- Permit implementation details required by the requested outcome or an invariant; reject speculative additions. Fix a bug at its owning layer, using shared code only for a shared invariant.
+- Restore the live rules against questioning unfamiliar or unpublished model names and against unsolicited analysis files.
 
-## Review cases
+## Static review cases
 
-- Later CLI spec reverses an earlier command: pass. Apply the latest correction only to that decision, keep unrelated constraints, and remove the behavior the replacement makes obsolete.
-- Current scan clean, historical reads fail: pass. A sample proves only its observed scope, and a blocked check states exactly what remains unverified.
-- Four approved deletions, restore tests waived: pass. Reuse the approval, do not ask again, match checks to the request, and verify at the actual entry point.
-- Exploratory localhost whiteboard: pass. A vague request gets the smallest version that does the core job, with no speculative production process and no cut to the requested interaction.
-- Create request loses its response: pass. Before retrying an uncertain external write, reconcile whether it already happened.
-- Worker reports success: pass. A worker report is not completion; inspect the result and rerun checks invalidated by combining it.
-- Markdown prompt proposal requested: pass. Deliver that proposal. It is not an approved decision, and it does not become a new instruction or a memory authorization.
+These are reasoning checks of the written instructions, not executed agent trials or evidence of runtime improvement. Installing the file does not show that a running session has reloaded it.
+
+- Later CLI spec reverses an earlier command: Apply the latest correction only to that decision, keep unrelated constraints, and remove the behavior the replacement makes obsolete.
+- Current scan clean, historical reads fail: A sample proves only its observed scope, and a blocked check states exactly what remains unverified.
+- Four approved deletions, restore tests waived: Reuse the approval, do not ask again, match checks to the request, and verify at the actual entry point.
+- Exploratory localhost whiteboard: A vague request gets the smallest version that does the core job, with no speculative production process and no cut to the requested interaction.
+- Create request loses its response: Before retrying an uncertain external write, reconcile whether it already happened.
+- Worker reports success: A worker report is not completion; inspect the result and rerun checks invalidated by combining it.
+- Markdown prompt proposal requested: Deliver that proposal. It is not an approved decision, and it does not become a new instruction or a memory authorization.
